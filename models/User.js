@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose')
-const friendSchema = requie('./Friend')
+const friendSchema = require('./Friends')
 
 const userSchema = new Schema(
     {
@@ -18,7 +18,7 @@ const userSchema = new Schema(
             required: true,
             max_length: 50,
         },
-        friends: [friendSchema],
+        friendList: [friendSchema],
     },
     {
         toJSON: {
