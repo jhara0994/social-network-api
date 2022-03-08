@@ -21,7 +21,7 @@ router.route('/:userId').get(getSingleUser).delete(deleteUser);
 // /api/students/:userId/thoughts
 router.route('/:userId/thoughts').post(addThought);
 
-// /api/students/:studentId/assignments/:assignmentId
+// /api/students/:userId/thoughts/:thoughtId
 router.route('/:userId/thoughts/:thoughtId').delete(removeThought);
 
 module.exports = router;
