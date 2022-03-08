@@ -7,18 +7,25 @@ const reactionSchema = new Schema (
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId()
         },
-        reactionName: {
+        reactionBody: {
             type: String,
             required: true,
-            max_length: 20,
-            min_length: 5,
+            max_length: 280,
             default: 'No reaction',
         },
-        reactionCount: {
-            type: Number,
+        userName: {
+            type: String,
             required: true,
-            default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
         },
+        createdAt: {
+            type: Date,
+            // default: Date.Types.Now,
+        },
+        // reactionCount: {
+        //     type: Number,
+        //     required: true,
+        //     default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
+        // },
         thought: [thoughtSchema]
     },
     {

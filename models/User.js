@@ -1,27 +1,25 @@
 const { Schema, model } = require('mongoose')
+const thoughtSchema = require('./Thought')
 const friendSchema = require('./Friends')
 
 const userSchema = new Schema(
     {
-        first: {
+        username: {
             type: String,
             required: true,
             max_length: 30,
         },
-        last: {
+        email: {
             type: String, 
             required: true,
             max_length: 30,
         },
-        github: {
-            type: String,
-            required: true,
-            max_length: 50,
-        },
-        friendList: [friendSchema],
+        thought: [thoughtSchema],
+        friends: [friendSchema],
     },
     {
         toJSON: {
+            virtuals: true,
             getters: true,
         },
     }
