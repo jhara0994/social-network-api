@@ -16,15 +16,19 @@ connection.once('open', async () => {
 
     for (let i = 0; i < 2; i++) {
         const name = getRandomName()
-        const first = name.split(' ')[0];
-        const last = name.split(' ')[1];
+        // const first = name.split(' ')[0];
+        // const last = name.split(' ')[1];
 
         users.push({
-            first,
-            last,
+            // first,
+            // last,
+            name,
             thoughts,
         })
     }
+
+    await User.collection.insertMany(users)
+
     await Thought.collection.insertOne({
         thoughtContent: "There's a snake in my boot",
         users: [...users],
