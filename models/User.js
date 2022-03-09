@@ -1,8 +1,9 @@
 const { Schema, model } = require('mongoose')
 const thoughtSchema = require('./Thought')
-const friendSchema = require('./Friends')
+const friendSchema = require('./User')
 
 const userSchema = new Schema(
+    console.log('Reading Schema'),
     {
         username: {
             type: String,

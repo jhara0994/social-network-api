@@ -3,7 +3,7 @@ const reactionSchema = require('./Reaction')
 
 const thoughtSchema = new Schema(
     {
-        thoughtContent: {
+        thoughtText: {
             type: String,
             required: true,
             max_length: 280,
@@ -11,7 +11,7 @@ const thoughtSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            // default: Date.default.Now,
+            default: () => new DataTypes.NOW,
         },
         username: {
             type: String,
@@ -22,6 +22,8 @@ const thoughtSchema = new Schema(
     {
         toJSON: {
             virtuals: true,
+            getters: true,
+            setters: true,
         },
         id: false,
     }
