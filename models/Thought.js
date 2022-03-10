@@ -11,7 +11,7 @@ const thoughtSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: () => new DataTypes.NOW,
+            default: Date.now(),
         },
         username: {
             type: String,

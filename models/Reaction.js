@@ -13,20 +13,19 @@ const reactionSchema = new Schema (
             max_length: 280,
             default: 'No reaction',
         },
-        userName: {
+        username: {
             type: String,
             required: true,
         },
         createdAt: {
             type: Date,
-            // default: Date.Types.Now,
+            default: Date.now(),
         },
         // reactionCount: {
         //     type: Number,
         //     required: true,
         //     default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
         // },
-        thought: [thoughtSchema]
     },
     {
         toJSON: {

@@ -8,15 +8,19 @@ const userSchema = new Schema(
         username: {
             type: String,
             required: true,
-            max_length: 30,
+            max_length: 50,
         },
         email: {
             type: String, 
             required: true,
-            max_length: 30,
+            max_length: 50,
         },
-        thought: [thoughtSchema],
-        friends: [friendSchema],
+        thought: {
+            type: [thoughtSchema]
+        },
+        friends: { 
+            type: [friendSchema]
+        },
     },
     {
         toJSON: {
