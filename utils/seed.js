@@ -12,9 +12,9 @@ connection.once('open', async () => {
     await Thought.deleteMany({})
 
     const users = []
-    const thoughts = getRandomThoughts(2)
+    const thoughts = getRandomThoughts(5)
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 4; i++) {
         const username = getRandomName() + [Math.floor(Math.random() * 5)]
         const email = getRandomEmail()
 

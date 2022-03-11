@@ -11,6 +11,7 @@ module.exports = {
     getSingleThought(req,res) {
         Thought.findOne({ _id: req.params.thoughtId })
         .select('__v')
+        .populate('reactions')
         .then((thoughts) => 
         !thoughts
             ? res.status(404).json({ message: 'No thought found with that ID' })

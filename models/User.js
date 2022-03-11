@@ -15,7 +15,7 @@ const userSchema = new Schema(
             required: true,
             max_length: 50,
         },
-        thought: {
+        thoughts: {
             type: [thoughtSchema]
         },
         friends: { 
@@ -26,10 +26,16 @@ const userSchema = new Schema(
         toJSON: {
             virtuals: true,
             getters: true,
-            setters: true,
         },
+        id: false
     }
 )
+
+userSchema
+    .virtual('friendCount')
+    .get(function () {
+        return this.friends.length;
+})
 
 const User = model('user', userSchema)
 
