@@ -4,6 +4,9 @@ module.exports = {
     // GET all users
     getUsers(req,res) {
         User.find()
+        .populate('thoughts')
+        .populate('friends')
+        .select('-__v')
         .then(async (users) => {
             const userObj = {
                 users
@@ -18,6 +21,8 @@ module.exports = {
     // GET single user
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId})
+        .populate('thoughts')
+        .populate('friends')
         .select('-__v')
         .then(async (user) => {
             !user
@@ -54,7 +59,7 @@ module.exports = {
     },
     // Delete a user
     deleteUser(req,res) {
-        User.findOneAndRemove({ _id: req.params.userId })
+        User.findOneAndDelete({ _id: req.params.userId })
         .then ((user) => {
             !user
             ? res.status(404).json({ message: 'No student exists with this ID!' })
@@ -110,4 +115,41 @@ module.exports = {
         })
         .catch((err) => res.status(500).json(err))
     },
+    // Add friends to user
+    addFriend(req,res) {
+        User.findOneAndUpdate(
+            { _id: req.params.id},
+            { $push: { friends: req.params.friendId }},
+            { new: true },
+            )
+        .populate('friends')
+        .select('__-v')
+        .then(user => {
+            !user
+            ? res
+                .status(404)
+                .json({ message: 'No user found with this ID!'})
+            : res.json(user)
+        })
+        .catch((err) => res.status(500).json(err))
+    },
+    // Delete a friend
+    deleteFriend(req,res) {
+        User.findOneAndDelete(
+            { _id: req.params.id },
+            { $pull: { friends: req.params.friendId }},
+            { new: true },
+            )
+        .populate('friends')
+        .select('__-v')
+        .then(user => {
+            !user
+            ? res
+                .status(404)
+                .json({ message: 'No user found with this ID!'})
+            : res.json(user)
+        })
+        .catch((err) => res.status(500).json(err))
+    }
 }
+
