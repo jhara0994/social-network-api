@@ -9,6 +9,7 @@ const reactionSchema = new Schema(
         reactionBody: {
             type: String,
             required: true,
+            min_length: 1,
             max_length: 280,
             default: 'No reaction',
         },
@@ -43,6 +44,7 @@ const thoughtSchema = new Schema(
         username: {
             type: String,
             required: true,
+            ref: 'user',
         },
         reactions: [reactionSchema],
     },

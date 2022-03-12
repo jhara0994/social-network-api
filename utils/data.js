@@ -7,7 +7,7 @@ const userName = [
     'techlord98',
     'JsLivin',
     'StyleChief',
-],
+]
 
 const email = [
     '@aol.com',
@@ -15,7 +15,7 @@ const email = [
     '@gmail.com',
     '@bellsouth.net',
     '@hotmail.net',
-],
+]
 
 
 const thoughts = [
@@ -33,13 +33,11 @@ const thoughts = [
 
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
-const getRandomName = () => {
-    `${getRandomArrItem(userName)}`
-}
+const getRandomName = () => `${getRandomArrItem(userName)}`
 
-const getRandomEmail = () => {
-    `${getRandomName}` + `${getRandomArrItem(email)}`
-}
+
+const getRandomEmail = () => `${getRandomName()}${getRandomArrItem(email)}`
+
 
 const getRandomThoughts = (int) => {
     const results = []

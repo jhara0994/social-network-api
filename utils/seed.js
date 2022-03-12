@@ -16,9 +16,12 @@ connection.once('open', async () => {
     const users = []
     const thoughts = getRandomThoughts(5)
 
-    for (let i = 0; i < 5; i++) {
+    console.log(thoughts)
+
+    for (let i = 0; i < 3; i++) {
         const username = getRandomName() + [Math.floor(Math.random() * 5)]
         const email = getRandomEmail()
+        console.log(thoughts)
 
         users.push({
             username,
@@ -27,13 +30,12 @@ connection.once('open', async () => {
         })
     }
 
-    await Thought.collection.insertOne({
-        thoughtText: "There's a snake in my boot",
-        username: [...users],
-    })
+    // await User.collection.insertMany(users)
+
+    // await Thought.collection.insertMany(thoughts)
 
     console.table(users);
-    console.table(thoughts);
+    // console.table(thoughts);
     console.info('Seeding complete!')
     process.exit(0)
 })
