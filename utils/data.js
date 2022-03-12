@@ -7,7 +7,7 @@ const userName = [
     'techlord98',
     'JsLivin',
     'StyleChief',
-]
+],
 
 const email = [
     '@aol.com',
@@ -15,7 +15,7 @@ const email = [
     '@gmail.com',
     '@bellsouth.net',
     '@hotmail.net',
-]
+],
 
 
 const thoughts = [

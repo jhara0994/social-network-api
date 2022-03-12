@@ -1,6 +1,8 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const { getRandomName, getRandomEmail, getRandomThoughts } = require('./data');
+const { getRandomName } = require('./data');
+const { getRandomEmail } = require('./data');
+const { getRandomThoughts } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -14,7 +16,7 @@ connection.once('open', async () => {
     const users = []
     const thoughts = getRandomThoughts(5)
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         const username = getRandomName() + [Math.floor(Math.random() * 5)]
         const email = getRandomEmail()
 
@@ -24,8 +26,6 @@ connection.once('open', async () => {
             thoughts,
         })
     }
-
-    await User.collection.insertMany(users)
 
     await Thought.collection.insertOne({
         thoughtText: "There's a snake in my boot",
