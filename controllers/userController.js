@@ -10,7 +10,12 @@ module.exports = {
         // })
         // // .populate('friends')
         // .select('-__v')
-        .then(users => res.json(users))
+        .then(async (users) => {
+            const userObj = {
+                users
+            }
+            return res.json(userObj)
+        })
         .catch((err) => {
             console.log(err);
             return res.status(500).json(err);
@@ -18,18 +23,18 @@ module.exports = {
     },
     // GET single user
     getSingleUser(req, res) {
-        User.findOne({ _id: req.params.userId})
+        User.findOne({ _id: req.params.userId })
         // .populate({
         //     path: 'thoughts',
         //     select: '__-v'
         // })
         // // .populate('friends')
-        // .select('-__v')
+        .select('-__v')
         .then(async (user) => {
-            !user
+            ! user
             ? res.status(404).json({ message: 'No user with that ID'})
             : res.json({
-                user
+                user,
             })
         })
         .catch((err) => {
@@ -47,10 +52,10 @@ module.exports = {
     updateUser(req,res) {
         User.findOneAndUpdate({ _id: req.params.userId })
         .then((user) => {
-            !user
+            ! user
             ? res.status(404).json({ message: 'No user exists with this ID!' })
             : res.json({
-                user
+                user,
             })
         })
         .catch((err) => {

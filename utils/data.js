@@ -3,7 +3,7 @@ const userName = [
     'LadyX379',
     'moneyMan4eva',
     'neoIsGoat',
-    '2good8teen',
+    '2good2beTrue',
     'techlord98',
     'JsLivin',
     'StyleChief',
