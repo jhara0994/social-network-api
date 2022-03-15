@@ -2,6 +2,7 @@ const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 const { getRandomName } = require('./data');
 const { getRandomEmail } = require('./data');
+const { getRandomFriends } = require('./data')
 const { getRandomThoughts } = require('./data');
 
 connection.on('error', (err) => err);
@@ -15,6 +16,7 @@ connection.once('open', async () => {
 
     const users = []
     const thoughts = getRandomThoughts(5)
+    const friends = getRandomFriends(3)
 
     console.log(thoughts)
 
@@ -27,6 +29,7 @@ connection.once('open', async () => {
             username,
             email,
             thoughts,
+            friends,
         })
     }
 

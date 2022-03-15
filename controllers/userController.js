@@ -18,7 +18,7 @@ module.exports = {
         })
         .catch((err) => {
             console.log(err);
-            return res.status(500).json(err);
+            return res.status(404).json(err);
           });
     },
     // GET single user
@@ -43,14 +43,14 @@ module.exports = {
         });
     },
     // Create a new user
-    createUser(req,res) {
+    createUser(req, res) {
         User.create(req.body)
         .then((user) => res.json(user))
-        .catch((err) => res.status(500).json(err))
-    },
+        .catch((err) => res.status(500).json(err));
+     },
     // Update a user
     updateUser(req,res) {
-        User.findOneAndUpdate({ _id: req.params.userId })
+        User.findOneAndUpdate({ _id: req.params.userId }, req.params.body, { new: true, runValidators: true })
         .then((user) => {
             ! user
             ? res.status(404).json({ message: 'No user exists with this ID!' })

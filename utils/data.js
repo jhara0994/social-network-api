@@ -9,6 +9,13 @@ const userName = [
     'StyleChief',
 ]
 
+const friendName = [
+    'KyleT',
+    'JordanB',
+    'CrystalA',
+    'BarryS',
+]
+
 const email = [
     '@aol.com',
     '@yahoo.com',
@@ -35,9 +42,18 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
 const getRandomName = () => `${getRandomArrItem(userName)}`
 
-
 const getRandomEmail = () => `${getRandomName()}${getRandomArrItem(email)}`
 
+const getRandomFriends = (int) => {
+    const results = []
+    for(let i = 0; i < int; i++) {
+        results.push({
+            friendName: getRandomArrItem(friendName),
+            friendEmail: getRandomEmail()
+        })
+    }
+    return results;
+}
 
 const getRandomThoughts = (int) => {
     const results = []
@@ -49,4 +65,4 @@ const getRandomThoughts = (int) => {
     return results;
 }
 
-module.exports = { getRandomName, getRandomEmail, getRandomThoughts }
+module.exports = { getRandomName, getRandomEmail, getRandomFriends, getRandomThoughts }
