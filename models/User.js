@@ -3,16 +3,18 @@ const { Schema, model } = require('mongoose')
 // const friendSchema = require('./User')
 
 const userSchema = new Schema(
-    console.log('Reading Schema'),
     {
         username: {
             type: String,
             required: true,
+            unique: true,
+            trim: true,
             max_length: 50,
         },
         email: {
             type: String, 
             required: true,
+            unique: true,
             max_length: 50,
         },
         thoughts: [
@@ -43,6 +45,6 @@ userSchema
         return this.friends.length;
 })
 
-const User = model('user', userSchema)
+const User = model('User', userSchema)
 
 module.exports = User

@@ -10,12 +10,7 @@ module.exports = {
         // })
         // // .populate('friends')
         // .select('-__v')
-        .then(async (users) => {
-            const userObj = {
-                users
-            }
-            return res.json(userObj)
-        })
+        .then(async (users) => res.json(users))
         .catch((err) => {
             console.log(err);
             return res.status(404).json(err);
@@ -46,11 +41,12 @@ module.exports = {
     createUser(req, res) {
         User.create(req.body)
         .then((user) => res.json(user))
-        .catch((err) => res.status(500).json(err));
+        .catch((err) => res.status(500).json(err)
+        );
      },
     // Update a user
     updateUser(req,res) {
-        User.findOneAndUpdate({ _id: req.params.userId }, req.params.body, { new: true, runValidators: true })
+        User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }, { new: true, runValidators: true })
         .then((user) => {
             ! user
             ? res.status(404).json({ message: 'No user exists with this ID!' })
@@ -125,7 +121,7 @@ module.exports = {
     addFriend(req,res) {
         User.findOneAndUpdate(
             { _id: req.params.id},
-            { $push: { friends: req.params.friendId }},
+            { $addToSet: { friends: req.params.friendId }},
             { new: true, runValidators: true },
             )
         // .populate('friends')

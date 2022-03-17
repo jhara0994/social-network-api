@@ -11,7 +11,7 @@ const {
   deleteFriend,
 } = require('../../controllers/userController');
 
-// /api.users
+// /api/users
 router.route('/').get(getUsers).post(createUser);
 
 // /api/users/:userId  GET single user, Update user, delete user
