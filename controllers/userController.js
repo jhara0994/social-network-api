@@ -4,12 +4,12 @@ module.exports = {
     // GET all users
     getUsers(req,res) {
         User.find()
-        // .populate({
-        //     path: 'thoughts',
-        //     select: '__-v'
-        // })
-        // .populate('friends')
-        // .select('-__v')
+        .populate({
+            path: 'thoughts',
+            select: '__-v'
+        })
+        .populate('friends')
+        .select('-__v')
         .then(async (users) => res.json(users))
         .catch((err) => {
             console.log(err);
@@ -19,11 +19,11 @@ module.exports = {
     // GET single user
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
-        // .populate({
-        //     path: 'thoughts',
-        //     select: '__-v'
-        // })
-        // // .populate('friends')
+        .populate({
+            path: 'thoughts',
+            select: '__-v'
+        })
+        .populate('friends')
         .select('-__v')
         .then(async (user) => {
             ! user
@@ -71,8 +71,8 @@ module.exports = {
                 { new: true },
             )
         })
-        .then((thought) => {
-            !thought
+        .then((thoughtData) => {
+            !thoughtData
             ? res.status(404).json({
                 message: 'User deleted, but no thoughts found',
             })

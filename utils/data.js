@@ -38,6 +38,14 @@ const thoughts = [
     'Next stock crash date',
 ]
 
+const reactions = [
+    {"c": "fa-thumbs-up", "l": "Thumbs up"},
+    "smiley",
+    "mad",
+    "sad",
+    "ecstatic"
+]
+
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
 const getRandomName = () => `${getRandomArrItem(userName)}`
@@ -65,4 +73,14 @@ const getRandomThoughts = (int) => {
     return results;
 }
 
-module.exports = { getRandomName, getRandomEmail, getRandomFriends, getRandomThoughts }
+const getRandomReactions = (int) => {
+    const results = []
+    for(let i = 0; i < int; i++) {
+        results.push({
+            reactions: getRandomArrItem(reactions)
+        })
+    }
+    return results
+}
+
+module.exports = { getRandomName, getRandomEmail, getRandomFriends, getRandomThoughts, getRandomReactions }

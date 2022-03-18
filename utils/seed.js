@@ -4,6 +4,7 @@ const { getRandomName } = require('./data');
 const { getRandomEmail } = require('./data');
 const { getRandomFriends } = require('./data')
 const { getRandomThoughts } = require('./data');
+const { getRandomReactions} = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -15,27 +16,34 @@ connection.once('open', async () => {
     await Thought.deleteMany({})
 
     const users = []
-    const thoughts = getRandomThoughts(5)
+    const thoughts =[]
+    const thoughtData = getRandomThoughts(5)
+    const singleThought = getRandomThoughts(1)
     const friends = getRandomFriends(3)
-
-    console.log(thoughts)
+    const reactions = getRandomReactions(2)
 
     for (let i = 0; i < 3; i++) {
         const username = getRandomName() + [Math.floor(Math.random() * 5)]
         const email = getRandomEmail()
-        console.log(thoughts)
 
         users.push({
             username,
             email,
-            thoughts,
+            thoughtData,
             friends,
+        })
+
+        thoughts.push({
+            singleThought,
+            username,
+            reactions,
         })
     }
 
     await User.collection.insertMany(users)
 
     await Thought.collection.insertMany(thoughts)
+
 
     console.table(users);
     console.table(thoughts);
