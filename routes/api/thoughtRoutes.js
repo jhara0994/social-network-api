@@ -12,8 +12,8 @@ const {
 // /api/thoughts
 router.route('/').get(getThoughts).post(createThought)
 
-// /api/thoughts/:userId  POST create thought
-router.route('/:userId').post(createThought)
+// // /api/thoughts/:userId  POST create thought
+// router.route('/:userId').post(createThought)
 
 // /api/thoughts/:thoughtId
 router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought)
@@ -21,7 +21,7 @@ router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(dele
 // /api/thoughts/:thoughtId/reactions  POST add reaction
 router.route('/:thoughtId/reactions').post(addReaction)
 
-// /api/thoughts/:thoughtId/reaction/:reactionId  DELETE a reaction
+// /api/thoughts/:thoughtId/reactions/:reactionId  DELETE a reaction
 router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction)
 
 module.exports = router;

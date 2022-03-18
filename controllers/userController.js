@@ -8,7 +8,7 @@ module.exports = {
         //     path: 'thoughts',
         //     select: '__-v'
         // })
-        // // .populate('friends')
+        // .populate('friends')
         // .select('-__v')
         .then(async (users) => res.json(users))
         .catch((err) => {
@@ -120,7 +120,7 @@ module.exports = {
     // Add friends to user
     addFriend(req,res) {
         User.findOneAndUpdate(
-            { _id: req.params.id},
+            { _id: req.params.userId},
             { $addToSet: { friends: req.params.friendId }},
             { new: true, runValidators: true },
             )
