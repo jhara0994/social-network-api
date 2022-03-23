@@ -90,8 +90,7 @@ module.exports = {
             { $addToSet: { friends: req.body}},
             { new: true, runValidators: true },
             )
-        // .populate('friends')
-        // .select('__-v')
+        
         .then(user => {
             ! user
             ? res
@@ -108,8 +107,6 @@ module.exports = {
             { $pull: { friends: req.params.friendId }},
             { runValidators: true },
             )
-        // .populate('friends')
-        // .select('__-v')
         .then(user => {
             !user
             ? res
