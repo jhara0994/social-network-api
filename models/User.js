@@ -2,9 +2,10 @@ const { Schema, model } = require('mongoose')
 
 const friendSchema = new Schema(
     {
-        id: {
+        friendId: {
             type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
+            default: () => new Types.ObjectId(),
+            ref: 'User'
         },
         username: {
             type: String,

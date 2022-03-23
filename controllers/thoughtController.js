@@ -7,12 +7,6 @@ module.exports = {
     // GET all thoughts
     getThoughts(req,res) {
         Thought.find({})
-        // .populate({
-        //     path: 'user',
-        //     select: '__-v'
-        // })
-        // .select('__-v')
-        // .sort({ _id: -1 })
         .then((thoughts) => res.json(thoughts))
         .catch((err) => {
             console.log(err)
@@ -23,12 +17,6 @@ module.exports = {
     // GET single thought
     getSingleThought(req,res) {
         Thought.findOne({ _id: req.params.thoughtId })
-        // .populate({
-        //     path: 'user',
-        //     select: '__-v'
-        // })
-        // .select('__v')
-        // .sort({ _id: -1 })
         .then((thoughts) => 
         !thoughts
             ? res.status(404).json({ message: 'No thought found with that ID' })
@@ -40,23 +28,7 @@ module.exports = {
     createThought(req,res) {
         Thought.create(req.body)
         .then((thoughts) => { res.json(thoughts)
-            // return User.findOneAndUpdate(
-            //     { username: body.username },
-            //     { $push: { thoughts: _id }},
-            //     { new: true },
-            // )
         })
-        // .then(thoughts => {
-        //     !thoughts
-        //     ? res  
-        //         .status(404)
-        //         .json({ message: 'No thought found with this ID'})
-        //     : res.json(thoughts)
-        // })
-        // .catch ((err) => {
-        //     console.log(err)
-        //     return res.status(500).json(err)
-        // })
     },
     // Update thought
     updateThought(req,res) {
@@ -101,8 +73,6 @@ module.exports = {
             { $push: {reactions: req.body }},
             { new: true , runValidators: true }
             )
-        // .populate('reactions')
-        // .select('__-v')
         .then(thoughts => {
             !thoughts
             ? res

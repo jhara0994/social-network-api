@@ -87,13 +87,13 @@ module.exports = {
     addFriend(req,res) {
         User.findOneAndUpdate(
             { _id: req.params.userId},
-            { $addToSet: { friends: req.params.friendId }},
+            { $addToSet: { friends: req.body}},
             { new: true, runValidators: true },
             )
         // .populate('friends')
         // .select('__-v')
         .then(user => {
-            !user
+            ! user
             ? res
                 .status(404)
                 .json({ message: 'No user found with this ID!'})
