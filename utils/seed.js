@@ -17,19 +17,22 @@ connection.once('open', async () => {
 
     const users = []
     const thoughts =[]
-    const thoughtData = getRandomThoughts(5)
+    // const thoughtData = getRandomThoughts(5)
     const singleThought = getRandomThoughts(1)
     const friends = getRandomFriends(3)
+    // const randomFriends = getRandomFriends(3)
     const reactions = getRandomReactions(2)
 
     for (let i = 0; i < 3; i++) {
         const username = getRandomName() + [Math.floor(Math.random() * 5)]
         const email = getRandomEmail()
+        const thought = getRandomThoughts(5)
+        
 
         users.push({
             username,
             email,
-            thoughtData,
+            thought,
             friends,
         })
 

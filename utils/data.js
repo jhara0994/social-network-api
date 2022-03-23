@@ -36,14 +36,20 @@ const thoughts = [
     'Tomorrow is the start of the rest of your life',
     'Here I go again on my own',
     'Next stock crash date',
+    'Ideas for new technology',
+    "The next space race"
 ]
 
 const reactions = [
-    {"c": "fa-thumbs-up", "l": "Thumbs up"},
+    "thumbs-up",
     "smiley",
     "mad",
     "sad",
-    "ecstatic"
+    "ecstatic",
+    "happy",
+    "furious",
+    "thinking",
+    "inspired"
 ]
 
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)]
@@ -56,8 +62,8 @@ const getRandomFriends = (int) => {
     const results = []
     for(let i = 0; i < int; i++) {
         results.push({
-            friendName: getRandomArrItem(friendName),
-            friendEmail: getRandomEmail()
+            username: getRandomArrItem(friendName),
+            email: getRandomEmail()
         })
     }
     return results;

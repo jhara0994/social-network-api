@@ -4,11 +4,11 @@ module.exports = {
     // GET all users
     getUsers(req,res) {
         User.find()
-        .populate({
-            path: 'thoughts',
-            select: '__-v'
-        })
-        .populate('friends')
+        // .populate({
+        //     path: 'thoughts',
+        //     select: '__-v'
+        // })
+        // .populate('friends')
         .select('-__v')
         .then(async (users) => res.json(users))
         .catch((err) => {
@@ -19,11 +19,11 @@ module.exports = {
     // GET single user
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
-        .populate({
-            path: 'thoughts',
-            select: '__-v'
-        })
-        .populate('friends')
+        // .populate({
+        //     path: 'thoughts',
+        //     select: '__-v'
+        // })
+        // .populate('friends')
         .select('-__v')
         .then(async (user) => {
             ! user
@@ -83,40 +83,6 @@ module.exports = {
             res.status(500).json(err);
           }); 
     },
-    // Add thought to a user
-    // addThought(req,res) {
-    //     console.log('A thought is being added')
-    //     console.log(req.body)
-    //     User.findOneAndUpdate(
-    //         { _id: req.params.id },
-    //         { $addToSet: { thoughts: req.body }},
-    //         { runValidators: true, new: true },
-    //     )
-    //     .then((user) => {
-    //         !user
-    //         ? res
-    //             .status(404)
-    //             .json({ message: 'No user found with that ID' })
-    //         : res.json(user)
-    //     })
-    //     .catch((err) => res.status(500).json(err))
-    // },
-    // // Remove thought
-    // removeThought(req,res) {
-    //     User.findByIdAndUpdate(
-    //         { _id: req.params.userId },
-    //         { $pull: { thoughts: { thoughtId: req.params.thoughtId }}},
-    //         { runValidators: true, new: true },
-    //     )
-    //     .then((user) => {
-    //         !user
-    //         ? res
-    //             .status(404)
-    //             .json({ message: 'No user found with that ID' })
-    //         : res.json(user)
-    //     })
-    //     .catch((err) => res.status(500).json(err))
-    // },
     // Add friends to user
     addFriend(req,res) {
         User.findOneAndUpdate(
@@ -140,7 +106,7 @@ module.exports = {
         User.findOneAndDelete(
             { _id: req.params.id },
             { $pull: { friends: req.params.friendId }},
-            { new: true },
+            { runValidators: true },
             )
         // .populate('friends')
         // .select('__-v')
